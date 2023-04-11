@@ -5,6 +5,8 @@ const {check,validationResult} = require('express-validator');
 const User = require('../../models/User');
 const garavatar = require('gravatar');
 const bycrypt = require('bcryptjs');
+const config = require('config');
+const jwt = require('jsonwebtoken');
 // this section is going to return the user deatilss. so 
 //@desc above
 //@route POST/api/users
@@ -48,8 +50,18 @@ router.post('/',[
         user.password = await bycrypt.hash(password,salt);
         await user.save();
         // user has been register return it's accessToken JWT token.
-
-        res.send('User Registered');
+         const payload = {
+            user: {
+                id: user.id
+            }
+         };
+         jwt.sign(payload,config.get('jwtSceretToken'),{expiresIn: 360000},(err,token)=>{
+            if(err){
+                throw err;
+            }
+            res.json({token}); 
+         })
+        // res.send('User Registered'); 
     }
     catch(err){
         console.log(err);

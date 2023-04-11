@@ -1,3 +1,4 @@
 {
-    "mongoURI":"mongodb+srv://shubham19kushwaha:qoMlsY6xBzAlzCDZ@devcomm.4rtfjyv.mongodb.net/?retryWrites=true&w=majority"
+    "mongoURI":"mongodb+srv://shubham19kushwaha:qoMlsY6xBzAlzCDZ@devcomm.4rtfjyv.mongodb.net/?retryWrites=true&w=majority",
+    "jwtSceretToken":"it's you"
 }
