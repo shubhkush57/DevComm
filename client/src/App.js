@@ -1,4 +1,4 @@
-import React from 'react';
+import {React,Fragment} from 'react';
 import './App.css';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
@@ -12,11 +12,11 @@ const App = () =>{
     <Navbar />
     {/*we have to wrap everything in the routes and react.fragment.*/}
     <Routes>
-      <React.Fragment>
+      <Fragment>
         <Route exact path = '/' element={<Landing/>} />
         <Route exact path='/login' element= {<Login/>} />
         <Route exact path='/register' element= {<Register/>} />
-      </React.Fragment>
+      </Fragment>
     </Routes>
   </Router>
   );
