@@ -41,8 +41,6 @@ const Login = ()=>{
                 </p>
 
         </Fragment>
-
-        
     );
 };
 export default Login;
