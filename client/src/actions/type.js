@@ -6,3 +6,8 @@ export const REGISTER_FAIL = 'REGISTER_FAIL';
 // for user loading 
 export const USER_LOADED = 'USER_LOADED';
 export const AUTH_ERROR = 'AUTH_ERROR';
+// for login user
+export const LOGIN_FAIL = 'LOGIN_FAIL';
+export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
+//for logout
+export const LOGOUT = 'LOGOUT';
