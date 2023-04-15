@@ -1,4 +1,4 @@
-import {React,Fragment} from 'react';
+import {React,Fragment,useEffect} from 'react';
 import './App.css';
 import {BrowserRouter as Router,Routes,Route} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
@@ -8,7 +8,19 @@ import Register from './components/auth/Register';
 import { Provider } from 'react-redux';
 import store from './store';
 import Alert from './components/layout/Alert';
+import setAuthToken from './utilts/setAuthToken';
+import { loadUser } from './actions/auth';
+if(localStorage.token){
+  // if localStorege token exits we will set it in global header
+  setAuthToken(localStorage.token);
+}
 const App = () =>{
+  // useEffect keep running untill we have some value.. so by giving [] we are running useEffect only once.
+  // it means component didmount..
+  // mounting ,unmounting,udating.
+  useEffect(()=>{
+    store.dispatch(loadUser());
+  },[])
   return (
     <Provider store = {store }>
   <Router>
