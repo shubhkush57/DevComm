@@ -1,7 +1,11 @@
 import {React,Fragment,useState} from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
-const Register = ()=>{
+import axios from 'axios';
+import {connect} from 'react-redux';
+import PropTypes from "prop-types";
+import setAlert from '../../actions/alerts'
+import { register } from '../../actions/auth';
+const Register = ({setAlert,register})=>{
     const [formData,setFormData] = useState({
         name : '',
         email :'',
@@ -12,33 +16,15 @@ const Register = ()=>{
     const {name,email,password,password2} = formData;
     // setfromData is goint to take an ojbect and change the target name to it's target value..
     const onChange = e=>setFormData({...formData,[e.target.name] : e.target.value})
-    const oneSubmit = async e=>{
+    const onSubmit = async e=>{
         e.preventDefault();
         if(password !== password2){
+            setAlert('password do not match','danger');
             console.log('Password dont matches');
         }
         else{
-            console.log(formData);
-            const newUser = {
-                name,
-                email,
-                password
-            };
-            try{
-                const config = {
-                    headers:{
-                        'Content-Type': 'application/json'
-                    }
-                }
-                const body = JSON.stringify(newUser);
-                const res = await axios.post('/api/users',body,config);
-                console.log(res.data);
-
-            }
-            catch(err){
-                console.log(err.message);
-
-            }
+            // console.log(formData);
+            register({name,email,password});
             
         }
     }
@@ -46,12 +32,12 @@ const Register = ()=>{
         <Fragment>
                <h1 className="large text-primary">Sign Up</h1>
                 <p className="lead"><i className="fas fa-user"></i> Create Your Account</p>
-                <form className="form" onSubmit= {e=>oneSubmit(e)}>
+                <form className="form" onSubmit= {e=>onSubmit(e)}>
                     <div className="form-group">
-                    <input type="text" placeholder="Name" name="name" value = {name} onChange ={e=>onChange(e)} required />
+                    <input type="text" placeholder="Name" name="name" value = {name} onChange ={e=>onChange(e)}  />
                     </div>
                     <div className="form-group">
-                    <input type="email" placeholder="Email Address" name="email" value = {email} onChange ={e=>onChange(e)} required/>
+                    <input type="email" placeholder="Email Address" name="email" value = {email} onChange ={e=>onChange(e)} />
                     <small className="form-text"
                         >This site uses Gravatar so if you want a profile image, use a
                         Gravatar email</small
@@ -62,9 +48,9 @@ const Register = ()=>{
                         type="password"
                         placeholder="Password"
                         name="password"
-                        minLength="6"
+                        
                         value = {password} onChange ={e=>onChange(e)}
-                        required
+                        
                     />
                     </div>
                     <div className="form-group">
@@ -73,7 +59,7 @@ const Register = ()=>{
                         placeholder="Confirm Password"
                         name="password2"
                         value = {password2} onChange ={e=>onChange(e)}
-                        minLength="6"
+                       
                     />
                     </div>
                     <input type="submit" className="btn btn-primary" value="Register" />
@@ -87,4 +73,12 @@ const Register = ()=>{
         
     );
 };
-export default Register;
+{/* {/* const mapStateToProps = (state) => ({
+
+}); */}
+
+Register.propTypes = {
+  setAlerts: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired
+}; 
+export default connect(null,{setAlert,register}) (Register);
