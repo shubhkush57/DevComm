@@ -22,7 +22,7 @@ export const getCurrentProfile =()=>async dispatch=>{
     }
 }
 // create or update current profile..
-export const createProfile = (formData,history,edit)=>async dispatch=>{
+export const createProfile = (formData,navigate,edit)=>async dispatch=>{
     try{
         const config = {
             headers:{
@@ -33,14 +33,18 @@ export const createProfile = (formData,history,edit)=>async dispatch=>{
         dispatch({
             type:GET_PROFILE,
             payload: res.data
-        })
+        });
         dispatch(setAlert(edit?'Profile has been updated':'Profile has been created','success'));
-        if(!edit){
-            history.push('/dashboard');
+
+        // const navigate = useNavigate();
+        // I have to fix it later on..
+        if(edit===false){
+            return navigate('/dashboard', { replace: true });
         }
     }
     catch(err){
-        const errors = err.response.data.errors;
+        console.log(err.response);
+        const errors = err.response.data.error; // was giving us null values not 
         console.log(errors);
         if(errors){
             errors.forEach(error => 
