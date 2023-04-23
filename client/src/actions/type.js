@@ -19,3 +19,5 @@ export const PROFILE_ERROR = 'PROFILE_ERROR';
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 // to update profile
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+// to delete the account
+export const ACCOUNT_DELETE = 'ACCOUNT_DELETE';

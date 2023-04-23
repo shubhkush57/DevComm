@@ -6,7 +6,8 @@ import setAlert from '../../actions/alerts'
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
 import DashboardActions from '../dashboard/DashboardActions';
-
+import Experience from "./Experience";
+import Education from "./Education";
 const Dashboard = ({getCurrentProfile,auth:{user},profile:{profile,loading}}) =>{
     useEffect(()=>{
         getCurrentProfile();
@@ -23,6 +24,8 @@ const Dashboard = ({getCurrentProfile,auth:{user},profile:{profile,loading}}) =>
             </p>
             {profile !== null ?(<Fragment>
                 <DashboardActions />
+                <Experience experience={profile.experience} />
+                <Education education={profile.education} />
             </Fragment>):(<Fragment>
                 <p>You don't have yet set profile, Please set profile</p>
                 <Link to = '/create-profile' className = 'btn btn-primary my-1'>Create Profile</Link>
