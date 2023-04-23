@@ -14,6 +14,8 @@ import setAuthToken from './utilts/setAuthToken';
 import PrivateRoute from './components/routing/PrivateRoute';
 import { loadUser } from './actions/auth';
 import EditProfile from './components/profile-forms/EditProfile';
+import AddExperience from './components/profile-forms/AddExperience';
+import AddEducation from './components/profile-forms/AddEducation';
 if(localStorage.token){
   // if localStorege token exits we will set it in global header
   setAuthToken(localStorage.token);
@@ -43,6 +45,10 @@ const App = () =>{
           <Route exact path='/dashboard' element={<Dashboard />} />
           <Route exact path='/create-profile' element = {<CreateProfile />} />
           <Route exact path='/edit-profile' element = {<EditProfile />} />
+          <Route exact path='/add-experience' element = {<AddExperience />} />
+          <Route exact path='/add-education' element = {<AddEducation />} />
+
+
       </Route>
         <Route exact path='/login' element= {<Login/>} />
         <Route exact path='/register' element= {<Register/>} />

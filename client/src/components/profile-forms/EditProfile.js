@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import { createProfile ,getCurrentProfile} from '../../actions/profile';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 const EditProfile = ({profile:{profile,loading},createProfile,getCurrentProfile}) => {
     const [formData,setFormData] = useState({

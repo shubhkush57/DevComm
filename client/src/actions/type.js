@@ -17,3 +17,5 @@ export const GET_PROFILE = 'GET_PROFILE';
 export const PROFILE_ERROR = 'PROFILE_ERROR';
 //when user logout it's profile should be clear..
 export const CLEAR_PROFILE = 'CLEAR_PROFILE';
+// to update profile
+export const UPDATE_PROFILE = 'UPDATE_PROFILE';
