@@ -5,6 +5,8 @@ import PropTypes from "prop-types";
 import setAlert from '../../actions/alerts'
 import { getCurrentProfile } from "../../actions/profile";
 import Spinner from "../layout/Spinner";
+import DashboardActions from '../dashboard/DashboardActions';
+
 const Dashboard = ({getCurrentProfile,auth:{user},profile:{profile,loading}}) =>{
     useEffect(()=>{
         getCurrentProfile();
@@ -19,7 +21,9 @@ const Dashboard = ({getCurrentProfile,auth:{user},profile:{profile,loading}}) =>
                 <i className="fas fa-user"/> Welcome {' '}
                 {user && user.name}
             </p>
-            {profile !== null ?(<Fragment>has</Fragment>):(<Fragment>
+            {profile !== null ?(<Fragment>
+                <DashboardActions />
+            </Fragment>):(<Fragment>
                 <p>You don't have yet set profile, Please set profile</p>
                 <Link to = '/create-profile' className = 'btn btn-primary my-1'>Create Profile</Link>
             </Fragment>)}

@@ -39,7 +39,7 @@ export const createProfile = (formData,navigate,edit)=>async dispatch=>{
         // const navigate = useNavigate();
         // I have to fix it later on..
         if(edit===false){
-            return navigate('/dashboard', { replace: true });
+            dispatch(navigate('/dashboard', { replace: true }));
         }
     }
     catch(err){
