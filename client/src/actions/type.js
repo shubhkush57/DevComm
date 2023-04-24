@@ -21,3 +21,7 @@ export const CLEAR_PROFILE = 'CLEAR_PROFILE';
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 // to delete the account
 export const ACCOUNT_DELETE = 'ACCOUNT_DELETE';
+// to get all user's profiles
+export const GET_PROFILES = 'GET_PROFILES';
+// to get user's github repos
+export const GET_REPOS = 'GET_REPOS';
