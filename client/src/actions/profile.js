@@ -245,7 +245,7 @@ export const deleteEducation = (id)=> async dispatch =>{
 export const deleteAccount = ()=> async dispatch =>{
     if(window.confirm('This can delete your profile permanently!! Are you Sure?')){
         try {
-            const res = await axios.delete(`/api/profile`);
+            await axios.delete(`/api/profile`);
             dispatch({
                 type: CLEAR_PROFILE,
             });
