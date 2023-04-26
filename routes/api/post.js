@@ -75,6 +75,7 @@ router.get('/:post_id',auth,async (req,res)=>{
 //access private
 router.delete('/:post_id',auth,async (req,res)=>{
     try{
+        console.log('Delete Button Worked From Backend Reachable');
         const post = await Post.findById(req.params.post_id);
         if(!post){
             // if post is not found then erro 400.
