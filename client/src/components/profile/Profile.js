@@ -44,7 +44,6 @@ const Profile =({
 
                 <div className='profile-edu bg-white p-2'>
                     <h2 className='text-primary'>Education</h2>
-                    {console.log(profile.education.length)}
                     {profile.education.length>0?(<Fragment>
                         {profile.education.map(edu=>(<ProfileEducation key = {edu._id}
                             education = {edu} />

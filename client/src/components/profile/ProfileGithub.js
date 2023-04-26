@@ -6,12 +6,14 @@ import { getGithubRepos } from '../../actions/profile';
 const ProfileGithub =({username,getGithubRepos,repos})=> {
     useEffect(()=>{
         getGithubRepos(username);
-    },[getGithubRepos])
+    },[getGithubRepos]);
+    console.log('repos: ');
+    console.log(repos);
   return (
     <div className = "profile-github">
         <h2 className='text-primary my-1'>Github Repos</h2>
-        {
-            repos === null ?<Spinner />:(
+        {   
+            repos.length === 0 ?<Spinner />:(
                 repos.map(repo =>(
                     <div key = {repo._id} className='repo bg-white p-1 my-1'>
                         <div>
