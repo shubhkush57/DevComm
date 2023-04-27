@@ -1,4 +1,4 @@
-import { GET_POSTS,POST_ERROR,UPDATE_LIKES,DELETE_POST,ADD_POST,GET_POST } from "./type";
+import { GET_POSTS,POST_ERROR,UPDATE_LIKES,DELETE_POST,ADD_POST,GET_POST,ADD_COMMENT,REMOVE_COMMENT } from "./type";
 import axios from 'axios';
 import setAlert from "./alerts";
 
@@ -111,6 +111,54 @@ export const addPost =(formData)=> async dispatch=>{
             payload: res.data
         })
         dispatch(setAlert('Post Created','success'));
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload:{
+                msg: err.response.statusText,
+                status:err.response.status
+            }
+        })
+    }
+}
+
+// add commnet
+export const addComment =(postId,formData)=> async dispatch=>{
+    // console.log('Delete post action is working');
+    const config = {
+        headers:{
+            'Content-Type' : 'application/json' 
+        }
+    }
+    try {
+        const res = await axios.post(`/api/post/comment/${postId}`,formData,config);
+        dispatch({
+            type: ADD_COMMENT,
+            payload: res.data
+        })
+        dispatch(setAlert('Comment Created','success'));
+    } catch (err) {
+        dispatch({
+            type: POST_ERROR,
+            payload:{
+                msg: err.response.statusText,
+                status:err.response.status
+            }
+        })
+    }
+}
+
+//delete comment
+// deletepost 
+export const deleteComment =(postId,com_id)=> async dispatch=>{
+    console.log('Delete comment action is working');
+    try {
+        await axios.delete(`/api/post/comment/${postId}/${com_id}`);
+        dispatch({
+            type: REMOVE_COMMENT,
+            payload: com_id
+        })
+        dispatch(setAlert('comment Removed','success'));
     } catch (err) {
         dispatch({
             type: POST_ERROR,

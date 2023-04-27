@@ -152,7 +152,7 @@ router.put('/unlike/:post_id',auth,async (req,res)=>{
 //@desc above
 //@route POST/api/post
 //access private
-router.put('/comment/:post_id',[auth,[
+router.post('/comment/:id',[auth,[
     check('text','Text is required.').not().isEmpty()
 ]],async(req,res)=>{
     const error = validationResult(req);
@@ -162,14 +162,16 @@ router.put('/comment/:post_id',[auth,[
     // error doesn't exits..
     try{
         const user = await User.findById(req.user.id).select('-password');
-        const post = await Post.findById(req.params.post_id);
+        const post = await Post.findById(req.params.id);
         if(!post){
             // if post not found..
             return res.status(400).json({msg: "post not found"});
         }
         const comment = {
             text: req.body.text,
-            user: req.user.id,
+            name:user.name,
+            avatar:user.avatar,
+             user: req.user.id,
         };
         post.comments.unshift(comment);
         await post.save();

@@ -40,7 +40,13 @@ const postSchema = mongoose.Schema({
             date:{
                 type: Date,
                 default: Date.now
-            }
+            },
+            name: {
+                type: String
+              },
+            avatar: {
+                type: String
+            },
         }
     ],
     date:{
